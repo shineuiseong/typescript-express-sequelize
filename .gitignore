@@ -1,0 +1,13 @@
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
+TypeExpress.iml
+package-lock.json
+/logs
+.env
+env/
+dist/
+env/

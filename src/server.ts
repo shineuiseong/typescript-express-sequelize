@@ -1,26 +1,13 @@
-import express, { Request, Response, NextFunction } from 'express';
-import {PORT} from "./config";
+import express from 'express'
+import config from  './config/index'
+import loaders from "./loaders/index";
 
-const app:express.Application = express();
+const app:express.Application = express()
+loaders(app)
 
-interface Data{
-    id:number;
-    name:string;
-}
-
-const Send:Data = {
-    id:0,
-    name:'test'
-}
-
-
-app.get("/", (req: Request, res: Response) => {
-    res.status(200).json({
-        success: true,
-        data:Send
-    })
-});
-
-app.listen(PORT,()=>{
-    console.log(`server listening on port ${PORT}`)
+const server = app.listen(config.server_port,()=>{
+    console.log(`Server listening on port: ${config.server_port}`)
+}) .on('error', (err) => {
+    console.log(`${config.server_port} server error: ${err}`)
 })
+export default { server }
